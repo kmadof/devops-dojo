@@ -20,35 +20,58 @@ variables:
 - name: ACTIVEMQPORT
   value: 8161
 
-strategy:
-  matrix:
-    linux:
-      imageName: 'ubuntu-latest'
-    mac:
-      imageName: 'macOS-latest'
-    windows:
-      imageName: 'windows-latest'
-
 pool:
   vmImage: $(imageName)
 
 jobs:
 - job: AllEnvironmentVariables
+  strategy:
+    matrix:
+      linux:
+        imageName: 'ubuntu-latest'
+      mac:
+        imageName: 'macOS-latest'
+      windows:
+        imageName: 'windows-latest'
   steps:
   - script: env | sort
     displayName: Display all environment variables
 
 - job: PipelineVariablesViaExtension
+  strategy:
+    matrix:
+      linux:
+        imageName: 'ubuntu-latest'
+      mac:
+        imageName: 'macOS-latest'
+      windows:
+        imageName: 'windows-latest'
   steps:
   - task: printAllVariables@1
     displayName: 'Print all variables via extension'
 
 - job: PipelineVariablesViaExpression
+  strategy:
+    matrix:
+      linux:
+        imageName: 'ubuntu-latest'
+      mac:
+        imageName: 'macOS-latest'
+      windows:
+        imageName: 'windows-latest'
   steps:
   - pwsh: Write-Host "${{ convertToJson(variables) }}"
     displayName: 'Print all variables via expression'
 
 - job: PipelineVariablesViaExpressionInLoop
+  strategy:
+    matrix:
+      linux:
+        imageName: 'ubuntu-latest'
+      mac:
+        imageName: 'macOS-latest'
+      windows:
+        imageName: 'windows-latest'
   steps:
   - ${{ each var in variables }}:
     - pwsh: Write-Host "${{ var.Key }} - ${{ var.Value }}"
