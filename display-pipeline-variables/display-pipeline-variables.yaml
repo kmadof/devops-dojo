@@ -1,0 +1,55 @@
+trigger: none
+pr: none
+
+name: Display pipeline variables
+
+variables:
+- group: DisplayPipelineVariables
+- name: DB_HOSTNAME
+  value: 10.123.56.222
+- name: DB_PORTNUMBER
+  value: 1521
+- name: USERNAME
+  value: TEST
+- name: PASSWORD
+  value: TEST
+- name: SCHEMANAME
+  value: SCHEMA  
+- name: ACTIVEMQNAME
+  value: 10.123.56.223
+- name: ACTIVEMQPORT
+  value: 8161
+
+strategy:
+  matrix:
+    linux:
+      imageName: 'ubuntu-latest'
+    mac:
+      imageName: 'macOS-latest'
+    windows:
+      imageName: 'windows-latest'
+
+pool:
+  vmImage: $(imageName)
+
+jobs:
+- job: AllEnvironmentVariables
+  steps:
+  - script: env | sort
+    displayName: Display all environment variables
+
+- job: PipelineVariablesViaExtension
+  steps:
+  - task: printAllVariables@1
+    displayName: 'Print all variables via extension'
+
+- job: PipelineVariablesViaExpression
+  steps:
+  - pwsh: Write-Host "${{ convertToJson(variables) }}"
+    displayName: 'Print all variables via expression'
+
+- job: PipelineVariablesViaExpressionInLoop
+  steps:
+  - ${{ each var in variables }}:
+    - pwsh: Write-Host "${{ var.Key }} - ${{ var.Value }}"
+      displayName: 'Print variables via expression in the loop'
