@@ -7,7 +7,7 @@ pool:
   vmImage: 'ubuntu-20.04'
 
 variables:
-- AZDO_ORG_SERVICE_URL: https://dev.azure.com/thecodemanual
+  AZDO_ORG_SERVICE_URL: https://dev.azure.com/thecodemanual
 
 steps:
 - task: qetza.replacetokens.replacetokens-task.replacetokens@3
