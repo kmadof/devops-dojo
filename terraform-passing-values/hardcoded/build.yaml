@@ -1,10 +1,11 @@
 trigger: none
 pr: none
 
+name: Terraform hardcoded values
+
 pool:
   vmImage: 'ubuntu-20.04'
 
-container: hashicorp/terraform:1.1.6
-
 steps:
 - script: terrafrom init
+  workingDirectory: terraform-passing-values/hardcoded
