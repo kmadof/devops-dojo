@@ -35,7 +35,7 @@ locals {
 
 resource "null_resource" "example2" {  
   provisioner "local-exec" {    
-    command = "echo ${data.azuredevops_variable_group.shilda.variable}"    
+    command = "echo ${data.azuredevops_variable_group.shilda.variable.name}"    
   }
 }
 
