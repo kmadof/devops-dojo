@@ -8,3 +8,4 @@ container: hashicorp/terraform:1.1.6
 
 steps:
 - script: terrafrom init
+  workingDirectory: terraform-passing-values/hardcoded
