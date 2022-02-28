@@ -1,4 +1,4 @@
-terrafrom {
+terraform {
   backend "local" {}
 }
 
