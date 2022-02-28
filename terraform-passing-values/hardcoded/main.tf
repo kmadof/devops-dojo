@@ -1,3 +1,7 @@
+provider "azurerm" {
+   features {}
+}
+
 resource "azurerm_resource_group" "resource_group" {
   name     = "shilda-${var.env}-rg"
   location = "West Europe"
@@ -6,7 +10,7 @@ resource "azurerm_resource_group" "resource_group" {
 module "vnet" {
   source              = "aztfm/virtual-network/azurerm"
   version             = ">=2.0.0"
-  name                = "virtual-network"
+  name                = "shilda-${var.env}-vnet"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   address_space       = ["10.0.0.0/16"]
