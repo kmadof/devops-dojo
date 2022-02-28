@@ -15,8 +15,8 @@ module "vnet" {
   location            = azurerm_resource_group.resource_group.location
   address_space       = ["10.0.0.0/16"]
   subnets = [
-    { name = "subnet1", address_prefixes = ["10.1.0.0/24"], delegation = "Microsoft.Sql/managedInstances" },
-    { name = "subnet2", address_prefixes = ["10.2.0.0/24"], service_endpoints = ["Microsoft.Sql"] },
-    { name = "subnet3", address_prefixes = ["10.3.0.0/24"], service_endpoints = ["Microsoft.Storage", "Microsoft.Web"], delegation = "Microsoft.Web/serverFarms" }
+    { name = "subnet-sql-managed", address_prefixes = ["10.1.0.0/24"], delegation = "Microsoft.Sql/managedInstances" },
+    { name = "subnet-sql", address_prefixes = ["10.2.0.0/24"], service_endpoints = ["Microsoft.Sql"] },
+    { name = "subnet-web", address_prefixes = ["10.3.0.0/24"], service_endpoints = ["Microsoft.Storage", "Microsoft.Web"], delegation = "Microsoft.Web/serverFarms" }
   ]
 }
