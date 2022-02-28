@@ -21,37 +21,37 @@ steps:
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-passing-values/hardcoded'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-passing-values/via-pipeline'
     command: 'init'
     backendServiceArm: 'Visual Studio Enterprise with MSDN(26f3dfe8-09e6-475f-b019-06857f15af9f)'
     environmentServiceNameAzureRM: 'Visual Studio Enterprise with MSDN(26f3dfe8-09e6-475f-b019-06857f15af9f)'
     backendAzureRmResourceGroupName: 'TheCodeManual'
     backendAzureRmStorageAccountName: 'thecodemanual'
     backendAzureRmContainerName: 'infra'
-    backendAzureRmKey: 'tcm-terrafrom-hardcoded-values'
+    backendAzureRmKey: 'tcm-terrafrom-via-pipeline-values'
 
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-passing-values/hardcoded'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-passing-values/via-pipeline'
     command: 'plan'
     backendServiceArm: 'Visual Studio Enterprise with MSDN(26f3dfe8-09e6-475f-b019-06857f15af9f)'
     environmentServiceNameAzureRM: 'Visual Studio Enterprise with MSDN(26f3dfe8-09e6-475f-b019-06857f15af9f)'
     backendAzureRmResourceGroupName: 'TheCodeManual'
     backendAzureRmStorageAccountName: 'thecodemanual'
     backendAzureRmContainerName: 'infra'
-    backendAzureRmKey: 'tcm-terrafrom-hardcoded-values'
-    commandOptions: -var="env=ci"
+    backendAzureRmKey: 'tcm-terrafrom-via-pipeline-values'
+    commandOptions: -var="env=ci" -var-file="inputs.tfvars"
 
 - task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-passing-values/hardcoded'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-passing-values/via-pipeline'
     command: 'apply'
     backendServiceArm: 'Visual Studio Enterprise with MSDN(26f3dfe8-09e6-475f-b019-06857f15af9f)'
     environmentServiceNameAzureRM: 'Visual Studio Enterprise with MSDN(26f3dfe8-09e6-475f-b019-06857f15af9f)'
     backendAzureRmResourceGroupName: 'TheCodeManual'
     backendAzureRmStorageAccountName: 'thecodemanual'
     backendAzureRmContainerName: 'infra'
-    backendAzureRmKey: 'tcm-terrafrom-hardcoded-values'
-    commandOptions: -auto-approve -var="env=ci"
+    backendAzureRmKey: 'tcm-terrafrom-via-pipeline-values'
+    commandOptions: -auto-approve -var="env=ci" -var-file="inputs.tfvars"
