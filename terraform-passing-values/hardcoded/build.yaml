@@ -33,3 +33,17 @@ steps:
     backendAzureRmStorageAccountName: 'thecodemanual'
     backendAzureRmContainerName: 'infra'
     backendAzureRmKey: 'tcm-terrafrom-hardcoded-values'
+    commandOptions: -var="env=ci"
+
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'azurerm'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-passing-values/hardcoded'
+    command: 'apply'
+    backendServiceArm: 'Visual Studio Enterprise with MSDN(26f3dfe8-09e6-475f-b019-06857f15af9f)'
+    environmentServiceNameAzureRM: 'Visual Studio Enterprise with MSDN(26f3dfe8-09e6-475f-b019-06857f15af9f)'
+    backendAzureRmResourceGroupName: 'TheCodeManual'
+    backendAzureRmStorageAccountName: 'thecodemanual'
+    backendAzureRmContainerName: 'infra'
+    backendAzureRmKey: 'tcm-terrafrom-hardcoded-values'
+    commandOptions: -auto-approve -var="env=ci"
