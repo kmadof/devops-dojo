@@ -35,7 +35,7 @@ data "azuredevops_variable_group" "shilda" {
 
 resource "null_resource" "example2" {  
   provisioner "local-exec" {    
-    command = "echo ${data.azuredevops_variable_group.shilda.variable["vnet_address_space"].name}"    
+    command = "echo ${length(data.azuredevops_variable_group.shilda.variable)}"    
   }
 }
 
