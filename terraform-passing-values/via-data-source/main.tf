@@ -48,7 +48,7 @@ resource "null_resource" "example2" {
 
 resource "null_resource" "example3" {  
   provisioner "local-exec" {    
-    command = "echo ${local.azuredevops_variables}"    
+    command = "echo ${jsonencode(local.azuredevops_variables)}"    
   }
 }
 
