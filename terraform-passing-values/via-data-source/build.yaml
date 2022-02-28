@@ -1,7 +1,7 @@
 trigger: none
 pr: none
 
-name: Terraform values passed via pipeline
+name: Terraform values passed via data source
 
 pool:
   vmImage: 'ubuntu-20.04'
