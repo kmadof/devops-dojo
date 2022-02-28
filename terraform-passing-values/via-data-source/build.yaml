@@ -6,6 +6,9 @@ name: Terraform values passed via data source
 pool:
   vmImage: 'ubuntu-20.04'
 
+variables:
+- AZDO_ORG_SERVICE_URL: https://dev.azure.com/thecodemanual
+
 steps:
 - task: qetza.replacetokens.replacetokens-task.replacetokens@3
   displayName: 'Replace tokens'
@@ -26,6 +29,8 @@ steps:
     backendAzureRmStorageAccountName: 'thecodemanual'
     backendAzureRmContainerName: 'infra'
     backendAzureRmKey: 'tcm-terrafrom-via-data-source-values'
+  env:
+    AZDO_PERSONAL_ACCESS_TOKEN: $(System.AccessToken)
 
 - task: TerraformTaskV2@2
   inputs:
@@ -39,6 +44,8 @@ steps:
     backendAzureRmContainerName: 'infra'
     backendAzureRmKey: 'tcm-terrafrom-via-data-source-values'
     commandOptions: -var="env=ci"
+  env:
+    AZDO_PERSONAL_ACCESS_TOKEN: $(System.AccessToken)
 
 - task: TerraformTaskV2@2
   inputs:
@@ -52,6 +59,8 @@ steps:
     backendAzureRmContainerName: 'infra'
     backendAzureRmKey: 'tcm-terrafrom-via-data-source-values'
     commandOptions: -auto-approve -var="env=ci"
+  env:
+    AZDO_PERSONAL_ACCESS_TOKEN: $(System.AccessToken)
 
 - task: TerraformTaskV2@2
   inputs:
@@ -65,3 +74,5 @@ steps:
     backendAzureRmContainerName: 'infra'
     backendAzureRmKey: 'tcm-terrafrom-via-data-source-values'
     commandOptions: -var="env=ci"
+  env:
+    AZDO_PERSONAL_ACCESS_TOKEN: $(System.AccessToken)
