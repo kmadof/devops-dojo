@@ -1,4 +1,4 @@
-provider "azurerm" {
+terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -6,10 +6,12 @@ provider "azurerm" {
     }
     azuredevops = {
       source = "microsoft/azuredevops"
-      version = ">=0.1.0"
+      version = "0.2.0"
     }
   }
+}
 
+provider "azurerm" {
    features {}
 }
 
