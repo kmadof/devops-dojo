@@ -38,7 +38,7 @@ steps:
     backendAzureRmStorageAccountName: 'thecodemanual'
     backendAzureRmContainerName: 'infra'
     backendAzureRmKey: 'tcm-terrafrom-via-data-source-values'
-    commandOptions: -var="env=ci" -var-file="inputs.tfvars"
+    commandOptions: -var="env=ci"
 
 - task: TerraformTaskV2@2
   inputs:
@@ -51,4 +51,4 @@ steps:
     backendAzureRmStorageAccountName: 'thecodemanual'
     backendAzureRmContainerName: 'infra'
     backendAzureRmKey: 'tcm-terrafrom-via-data-source-values'
-    commandOptions: -auto-approve -var="env=ci" -var-file="inputs.tfvars"
+    commandOptions: -auto-approve -var="env=ci"
