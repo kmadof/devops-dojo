@@ -1,0 +1,10 @@
+trigger: none
+pr: none
+
+pool:
+  vmImage: 'ubuntu-20.04'
+
+container: hashicorp/terraform:1.1.6
+
+steps:
+- script: terrafrom init
