@@ -7,5 +7,16 @@ pool:
   vmImage: 'ubuntu-20.04'
 
 steps:
-- script: terrafrom init
-  workingDirectory: terraform-passing-values/hardcoded
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: 'latest'
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'azurerm'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-passing-values/hardcoded'
+    command: 'init'
+    backendServiceArm: 'Visual Studio Enterprise with MSDN(26f3dfe8-09e6-475f-b019-06857f15af9f)'
+    backendAzureRmResourceGroupName: 'TheCodeManual'
+    backendAzureRmStorageAccountName: 'thecodemanual'
+    backendAzureRmContainerName: 'infra'
+    backendAzureRmKey: 'tcm-terrafrom-hardcoded-values'
