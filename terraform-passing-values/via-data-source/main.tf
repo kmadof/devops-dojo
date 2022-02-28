@@ -15,10 +15,10 @@ provider "azurerm" {
    features {}
 }
 
-resource "azurerm_resource_group" "resource_group" {
+/* resource "azurerm_resource_group" "resource_group" {
   name     = "shilda-${var.env}-rg"
   location = "West Europe"
-}
+} */
 
 data "azuredevops_project" "project" {
   name = "DevOps Dojo"
@@ -33,9 +33,22 @@ data "azuredevops_variable_group" "shilda" {
   vnet_address_space = data.azuredevops_variable_group.shilda.variable
 } */
 
+locals {
+  azuredevops_variables = {
+    for group_variable in data.azuredevops_variable_group.shilda.variable:
+      group_variable.name => group_variable
+  }
+}
+
 resource "null_resource" "example2" {  
   provisioner "local-exec" {    
     command = "echo ${length(data.azuredevops_variable_group.shilda.variable)}"    
+  }
+}
+
+resource "null_resource" "example2" {  
+  provisioner "local-exec" {    
+    command = "echo ${local.azuredevops_variables}"    
   }
 }
 
