@@ -29,7 +29,17 @@ data "azuredevops_variable_group" "shilda" {
   name       = "shilda-${var.env}"
 }
 
-module "vnet" {
+locals {
+  vnet_address_space = data.azuredevops_variable_group.shilda.variable
+}
+
+resource "null_resource" "example2" {  
+  provisioner "local-exec" {    
+    command = "echo ${data.azuredevops_variable_group.shilda.variable}"    
+  }
+}
+
+/* module "vnet" {
   source              = "aztfm/virtual-network/azurerm"
   version             = ">=2.0.0"
   name                = "shilda-${var.env}-vnet"
@@ -41,4 +51,4 @@ module "vnet" {
     { name = "subnet-sql", address_prefixes = [data.azuredevops_variable_group.shilda.subnet_sql_address_prefixes], service_endpoints = ["Microsoft.Sql"] },
     { name = "subnet-web", address_prefixes = [data.azuredevops_variable_group.shilda.subnet_web_address_prefixes], service_endpoints = ["Microsoft.Storage", "Microsoft.Web"], delegation = "Microsoft.Web/serverFarms" }
   ]
-}
+} */
