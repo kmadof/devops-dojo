@@ -1,3 +1,7 @@
+terrafrom {
+  backend "local" {}
+}
+
 resource "azurerm_resource_group" "resource_group" {
   name     = "shilda-${var.env}-rg"
   location = "West Europe"
