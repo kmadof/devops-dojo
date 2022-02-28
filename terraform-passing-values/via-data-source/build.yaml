@@ -10,11 +10,6 @@ variables:
   AZDO_ORG_SERVICE_URL: https://dev.azure.com/thecodemanual
 
 steps:
-- task: qetza.replacetokens.replacetokens-task.replacetokens@3
-  displayName: 'Replace tokens'
-  inputs:
-    targetFiles: |
-      **/*.tfvars
 - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
   inputs:
     terraformVersion: 'latest'
